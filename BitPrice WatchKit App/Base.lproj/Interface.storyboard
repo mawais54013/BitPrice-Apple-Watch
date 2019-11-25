@@ -1,15 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="BitPrice_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <imageView height="0.59999999999999998" alignment="center" image="bitcoin" contentMode="scaleAspectFill" id="ZIb-Sq-XRc"/>
+                        <label alignment="center" text="$567.18" minimumScaleFactor="0.5" id="bVY-57-k8F">
+                            <fontDescription key="font" type="boldSystem" pointSize="28"/>
+                        </label>
+                        <label alignment="center" text="Updating..." id="p1K-1E-1zR"/>
+                    </items>
+                </controller>
             </objects>
+            <point key="canvasLocation" x="34" y="31"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bitcoin" width="1920" height="1080"/>
+    </resources>
 </document>
