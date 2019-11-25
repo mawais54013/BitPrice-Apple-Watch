@@ -17,6 +17,10 @@
                         </label>
                         <label alignment="center" text="Updating..." id="p1K-1E-1zR"/>
                     </items>
+                    <connections>
+                        <outlet property="priceLabel" destination="bVY-57-k8F" id="Ezj-gK-i4i"/>
+                        <outlet property="updatingLabel" destination="p1K-1E-1zR" id="NYL-bP-DZ8"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="34" y="31"/>
