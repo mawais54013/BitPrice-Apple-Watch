@@ -14,17 +14,25 @@ class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var priceLabel: WKInterfaceLabel!
     @IBOutlet weak var updatingLabel: WKInterfaceLabel!
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        
-        // Configure interface objects here.
-    }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        print("testing")
+        if let price = UserDefaults.standard.value(forKey: "price") as? NSNumber {
+            updatingLabel.setText("Updating...")
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.locale = Locale(identifier: "en_US")
+            
+            self.priceLabel.setText(formatter.string(from: price))
+            
+        } else {
+            priceLabel.setText("Getting Price...")
+            updatingLabel.setText("")
+        }
+        
         getPrice()
     }
 
@@ -39,11 +47,19 @@ class InterfaceController: WKInterfaceController {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                         
-                        guard let bpi = json["bpi"] as? [String:Any], let USD = bpi["USD"] as? [String:Any], let rateFloat = USD["rate_float"] as? Float else {
+                        guard let bpi = json["bpi"] as? [String:Any], let USD = bpi["USD"] as? [String:Any], let price = USD["rate_float"] as? NSNumber else {
                             return
                         }
-                        print(rateFloat)
-                        self.priceLabel.setText("\(rateFloat)")
+                        
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .currency
+                        formatter.locale = Locale(identifier: "en_US")
+                            
+                        self.priceLabel.setText(formatter.string(from: price))
+                        self.updatingLabel.setText("Updated")
+                        
+                        UserDefaults.standard.set(price, forKey: "price")
+                        UserDefaults.standard.synchronize()
                         
                     } catch {
                         
