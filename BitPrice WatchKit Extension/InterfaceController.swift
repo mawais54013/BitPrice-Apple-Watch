@@ -61,6 +61,12 @@ class InterfaceController: WKInterfaceController {
                         UserDefaults.standard.set(price, forKey: "price")
                         UserDefaults.standard.synchronize()
                         
+                        if CLKComplicationServer.sharedInstance().activeComplications != nil {
+                            for comp in CLKComplicationServer.sharedInstance().activeComplications! {
+                                CLKComplicationServer.sharedInstance().reloadTimeline(for: comp)
+                            }
+                        }
+                        
                     } catch {
                         
                     }
